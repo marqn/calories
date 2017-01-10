@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter} from "@angular/core";
+import {MealVO} from "./meal-vo";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
+  meal:MealVO = {
+    id: 1,
+    name: 'bread',
+    calories: 99
+  }
+
+  actions = new EventEmitter<string>();
+  
+  
+  
 }
+
+
