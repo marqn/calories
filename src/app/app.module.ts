@@ -1,24 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
-import { AppComponent } from './app.component';
-import { NewComponentComponent } from './new-component/new-component.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {AppComponent} from "./app.component";
+import {NewComponentComponent} from "./new-component/new-component.component";
 import {MaterializeDirective} from "angular2-materialize";
+import {NavigationComponent} from "./navigation/navigation.component";
+import {RouterModule, Routes} from "@angular/router";
+import {DiaryComponent} from "./diary/diary.component";
+import {MyFoodComponent} from "./my-food/my-food.component";
+import {ProfileComponent} from "./profile/profile.component";
+
+const appRoutes:Routes = [
+  {path: '', component: DiaryComponent},
+  {path: 'diary', component: DiaryComponent},
+  {path: 'my-food', component: MyFoodComponent},
+  {path: 'profile', component: ProfileComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     NewComponentComponent,
-    MaterializeDirective
+    MaterializeDirective,
+    NavigationComponent,
+    DiaryComponent,
+    MyFoodComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

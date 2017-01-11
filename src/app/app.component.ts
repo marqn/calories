@@ -1,5 +1,4 @@
-import {Component, EventEmitter} from "@angular/core";
-import {MealVO} from "./meal-vo";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -7,18 +6,8 @@ import {MealVO} from "./meal-vo";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
 
-  meal:MealVO = {
-    id: 1,
-    name: 'bread',
-    calories: 99
-  }
 
-  actions = new EventEmitter<string>();
-  
-  
-  
 }
 
 
