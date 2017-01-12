@@ -10,9 +10,11 @@ import {RouterModule, Routes} from "@angular/router";
 import {DiaryComponent} from "./diary/diary.component";
 import {MyFoodComponent} from "./my-food/my-food.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {LoginComponent} from "./login/login.component";
 
 const appRoutes:Routes = [
   {path: '', component: DiaryComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'diary', component: DiaryComponent},
   {path: 'my-food', component: MyFoodComponent},
   {path: 'profile', component: ProfileComponent}
@@ -26,7 +28,8 @@ const appRoutes:Routes = [
     NavigationComponent,
     DiaryComponent,
     MyFoodComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
