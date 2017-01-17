@@ -1,0 +1,23 @@
+{
+  "dishes": {
+    "id0001": {
+      "name": "kanapka",
+      "calories": 234
+    },
+    "id0002": {
+      "name": "zupa kalafiorowa",
+      "calories": 120
+    }
+  },
+
+  "users": {
+    "user": {
+      "days": {
+        "data":"12.01.2015",
+        "dishes": {
+          "dishId":"id0001"
+        }
+      }
+    }
+  }
+}
