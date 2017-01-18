@@ -1,21 +1,43 @@
 {
-  "dishes": {
-    "id0001": {
-      "name": "kanapka",
-      "calories": 234
+  "globalDishes": {
+    "globalDishid_7SDF897SDF89": {
+      "name": "Big mac",
+      "calories": 650
     },
-    "id0002": {
-      "name": "zupa kalafiorowa",
-      "calories": 120
+    "globalDishid_7SDF89ASDF83": {
+      "name": "Fish mac",
+      "calories": 570
     }
   },
-
   "users": {
-    "user": {
+    "userID_JFSUFSD89FSDF0SD8F0SD8F0": {
+      "dishes": {
+        "id0001": {
+          "name": "kanapka",
+          "calories": 234
+        },
+        "id0002": {
+          "name": "zupa kalafiorowa",
+          "calories": 120
+        }
+      },
+      "userdata": {
+        "name": "rys",
+        "surname": "daniecki",
+        "email": "rys@gmail.com",
+        "refresh": 5
+      },
       "days": {
-        "data":"12.01.2015",
-        "dishes": {
-          "dishId":"id0001"
+        "dayID_87FD897GF8D8": {
+          "data": "12.01.2015",
+          "dishes": {
+            "idDish_878D7SFS0980F80S9D8F0S": {
+              "dishId": "id0001"
+            },
+            "idDish_H4K23HJ4JK23H4JK": {
+              "dishId": "id0002"
+            }
+          }
         }
       }
     }
