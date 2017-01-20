@@ -8,7 +8,7 @@
         <a class="waves-effect waves-green btn" (click)="signState()">Załóż konto</a>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="state != 'remindPassword'">
 
         <div class="input-field col s5">
 
@@ -20,7 +20,7 @@
             <input id="icon_telephone" type="tel" class="validate" placeholder="Hasło">
           </p>
 
-          <div [hidden]="login">
+          <div *ngIf="state === 'login'">
             <p style="padding-bottom: 20px">
               <input type="checkbox" id="test5"/>
               <label for="test5">Akceptacja regulaminu</label>
@@ -31,7 +31,7 @@
             </p>
           </div>
 
-          <div [hidden]="!login">
+          <div *ngIf="state === 'register'">
             <p>
               <a class="btn waves-effect green">Zaloguj się</a>
             </p>
@@ -64,15 +64,17 @@
 
       </div>
 
-      <div class="row" [hidden]="login">
+      <div class="row" *ngIf="state === 'login'">
         <a class="btn">Zobacz regulamin</a>
       </div>
 
-      <div class="row" [hidden]="!login">
-        <a  class="btn">Przypomij hasło</a>
+      <div class="row" *ngIf="state === 'register'">
+        <a  class="btn" (click)="remindPassword()">Przypomij hasło</a>
       </div>
 
     </div>
-    <div class="col s2"></div>
+    <div *ngIf="state==='remindPassword'" class="col s2">
+      remind password
+    </div>
   </div>
 </div>

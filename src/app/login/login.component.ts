@@ -1,24 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+
+enum LoginPage {
+  login,
+  register,
+  remindPassword
+}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  
-  login:boolean
-  
-  
+
+
+  state = 'login';
+
   loginState() {
-    this.login = true;
+    this.state = 'login'
   }
 
   signState() {
-    this.login = false;
+    this.state = 'register'
   }
-  
-  constructor() { }
+
+  remindPassword() {
+    this.state = 'remindPassword'
+  }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
