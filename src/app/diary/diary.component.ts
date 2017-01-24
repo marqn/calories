@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {MealVO} from "../meal-vo";
 
 @Component({
@@ -10,12 +10,31 @@ export class DiaryComponent implements OnInit {
 
   meal:MealVO = {
     id: 1,
-    name: 'bread',
-    calories: 99
+    name: 'kanapka',
+    calories: 299
+  };
+  meal2:MealVO = {
+    id: 2,
+    name: 'jabłko',
+    calories: 50
+  };
+  meal3:MealVO = {
+    id: 3,
+    name: 'ciastko',
+    calories: 500
   };
 
-  
-  constructor() {}
-  ngOnInit() {}
+  meals:MealVO[];
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.meals = [this.meal, this.meal2, this.meal3];
+  }
+
+  addMeal() {
+    this.meals.unshift(new MealVO());
+  }
 
 }

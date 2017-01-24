@@ -1,0 +1,22 @@
+<div>
+  <ul class="pagination">
+    <li class="waves-effect"><a (click)="prevBtn()"><i class="material-icons">chevron_left</i></a></li>
+
+    <li class="waves-effect"><a (click)="dayClick(-4)">{{moveDayLabel(-4)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(-3)">{{moveDayLabel(-3)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(-2)">{{moveDayLabel(-2)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(-1)">{{moveDayLabel(-1)}}</a></li>
+
+    <li class="active"><a (click)="dayClick(0)">{{moveDayLabel(0)}}</a></li>
+
+    <li class="waves-effect"><a (click)="dayClick(1)">{{moveDayLabel(1)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(2)">{{moveDayLabel(2)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(3)">{{moveDayLabel(3)}}</a></li>
+    <li class="waves-effect"><a (click)="dayClick(4)">{{moveDayLabel(4)}}</a></li>
+
+    <li class="waves-effect"><a (click)="nextBtn()"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</div>
+<div>
+  <h6>{{getCurrentDate()}}</h6>
+</div>

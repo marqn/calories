@@ -11,6 +11,8 @@ import {DiaryComponent} from "./diary/diary.component";
 import {MyFoodComponent} from "./my-food/my-food.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {LoginComponent} from "./login/login.component";
+import { DateChooserComponent } from './diary/date-chooser/date-chooser.component';
+import { AddMealComponent } from './diary/add-meal/add-meal.component';
 
 const appRoutes:Routes = [
   {path: '', component: DiaryComponent},
@@ -29,7 +31,9 @@ const appRoutes:Routes = [
     DiaryComponent,
     MyFoodComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    DateChooserComponent,
+    AddMealComponent
   ],
   imports: [
     BrowserModule,

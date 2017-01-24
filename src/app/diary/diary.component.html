@@ -1,26 +1,14 @@
 <!--<app-new-component [meal]="meal"></app-new-component>-->
 
 <div class="row center-align container">
-  <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="waves-effect"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="active"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!">6</a></li>
-    <li class="waves-effect"><a href="#!">7</a></li>
-    <li class="waves-effect"><a href="#!">8</a></li>
-    <li class="waves-effect"><a href="#!">9</a></li>
 
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
+  <app-date-chooser></app-date-chooser>
 
   <h3>Limit: 2400 kcal</h3>
+  <a (click)="addMeal()" class="btn waves-effect red">add row</a>
 
-  <div class="col s6 offset-s3">
-    <input type="text" placeholder="Input meal">
-
+  <div *ngFor="let meal of meals">
+    <app-add-meal [mealVO]="meal"></app-add-meal>
   </div>
 
 </div>
