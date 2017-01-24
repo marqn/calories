@@ -20,8 +20,8 @@ export class AddMealComponent implements OnInit {
     this.dataAutocomplete =
     {
       data: {
-        "adidas": null,
-        "nike": null,
+        "adidas": 'http://metalspaw.com.pl/wp-content/uploads/2015/12/wynajem-spawaczy6.png',
+        "nike": 'http://metalspaw.com.pl/wp-content/uploads/2016/02/wynajem-sprz%C4%99tu.png',
         "puma": 'http://placehold.it/250x250'
       }
     };

@@ -4,8 +4,9 @@
 
   <app-date-chooser></app-date-chooser>
 
-  <h3>Limit: 2400 kcal</h3>
+  <h3>Limit: {{calculateCalories(2400)}} kcal</h3>
   <a (click)="addMeal()" class="btn waves-effect red">add row</a>
+  <a (click)="test()" class="btn waves-effect red">test</a>
 
   <div *ngFor="let meal of meals">
     <app-add-meal [mealVO]="meal"></app-add-meal>

@@ -14,8 +14,7 @@ enum LoginPage {
 
 export class LoginComponent implements OnInit {
 
-
-  state = 'login';
+  private state = 'login';
 
   loginState() {
     this.state = 'login'
@@ -27,6 +26,24 @@ export class LoginComponent implements OnInit {
 
   remindPassword() {
     this.state = 'remindPassword'
+  }
+
+  getClass(type:string, secondType:string):string {
+    if(type === this.state || secondType === this.state) {
+      return 'waves-effect btn';
+    }
+    else {
+      return 'waves-effect grey btn';
+    }
+  }
+
+  keyEvent(event, sendRemindBtn) {
+    console.log(event, event.keyCode, event.keyIdentifier);
+    console.log(sendRemindBtn);
+  }
+
+  test() {
+    console.log('success log!!!');
   }
 
   constructor() {

@@ -26,6 +26,21 @@ export class DiaryComponent implements OnInit {
 
   meals:MealVO[];
 
+  calculateCalories(amountCalories:number):number {
+
+    for (var i = 0; i < this.meals.length; i++) {
+      var  mealVO:MealVO = this.meals[i];
+      if(mealVO.calories != undefined)
+      amountCalories -= mealVO.calories;
+    }
+
+    return amountCalories;
+  }
+
+  test() {
+    console.log(this.meals);
+  }
+
   constructor() {
   }
 
@@ -34,7 +49,11 @@ export class DiaryComponent implements OnInit {
   }
 
   addMeal() {
-    this.meals.unshift(new MealVO());
+    var meal:MealVO = new MealVO();
+    meal.id = 4;
+    meal.name = '';
+    meal.calories = 40;
+    this.meals.unshift(meal);
   }
 
 }
