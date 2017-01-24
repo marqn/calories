@@ -1,4 +1,4 @@
-import {Component, OnInit, Input } from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {MealVO} from "../../meal-vo";
 
 @Component({
@@ -10,10 +10,21 @@ export class AddMealComponent implements OnInit {
 
   @Input() mealVO:MealVO;
 
+
+  public dataAutocomplete;
+
   constructor() {
   }
 
   ngOnInit() {
+    this.dataAutocomplete =
+    {
+      data: {
+        "adidas": null,
+        "nike": null,
+        "puma": 'http://placehold.it/250x250'
+      }
+    };
   }
 
 }
