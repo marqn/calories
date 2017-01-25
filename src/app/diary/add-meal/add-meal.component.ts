@@ -16,6 +16,12 @@ export class AddMealComponent implements OnInit {
   constructor() {
   }
 
+  delete(item:MealVO) {
+    console.log('delete it');
+    console.log(item);
+  }
+
+
   ngOnInit() {
     this.dataAutocomplete =
     {

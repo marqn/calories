@@ -1,12 +1,23 @@
 <nav>
   <div class="nav-wrapper">
 
-    <a routerLink="/login" routerLinkActive="active" class="right" >Zaloguj się</a>
+    <ul class="right">
+      <li>
+        <a [hidden]="isLogged" routerLink="/login" routerLinkActive="active" class="right">Zaloguj się</a>
+      </li>
+
+      <li [hidden]="!isLogged">
+        {{username}}
+      </li>
+      <li>
+        <a [hidden]="!isLogged" (click)="logout()">Logout</a>
+      </li>
+    </ul>
 
     <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li><a routerLink="/diary" routerLinkActive="active" >Dziennik</a></li>
-      <li><a routerLink="/my-food" routerLinkActive="active" >Moja żywność</a></li>
-      <li><a routerLink="/profile" routerLinkActive="active" >Mój profil</a></li>
+      <li><a routerLink="/diary" routerLinkActive="active">Dziennik</a></li>
+      <li><a routerLink="/my-food" routerLinkActive="active">Moja żywność</a></li>
+      <li><a routerLink="/profile" routerLinkActive="active">Mój profil</a></li>
     </ul>
   </div>
 </nav>

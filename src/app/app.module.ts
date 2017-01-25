@@ -13,6 +13,21 @@ import {ProfileComponent} from "./profile/profile.component";
 import {LoginComponent} from "./login/login.component";
 import { DateChooserComponent } from './diary/date-chooser/date-chooser.component';
 import { AddMealComponent } from './diary/add-meal/add-meal.component';
+import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
+import {DiaryService} from "./services/diary.service";
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: "AIzaSyCDcNX_oUuaE2LaSBV-FdQkmj1xS7dM-qQ",
+  authDomain: "calories-37b6e.firebaseapp.com",
+  databaseURL: "https://calories-37b6e.firebaseio.com",
+  storageBucket: "calories-37b6e.appspot.com"
+};
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Popup
+};
 
 const appRoutes:Routes = [
   {path: '', component: DiaryComponent},
@@ -39,9 +54,10 @@ const appRoutes:Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [],
+  providers: [DiaryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

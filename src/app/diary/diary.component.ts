@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {MealVO} from "../meal-vo";
+import {DiaryService} from "../services/diary.service";
 
 @Component({
   selector: 'app-diary',
@@ -8,23 +9,14 @@ import {MealVO} from "../meal-vo";
 })
 export class DiaryComponent implements OnInit {
 
-  meal:MealVO = {
-    id: 1,
-    name: 'kanapka',
-    calories: 299
-  };
-  meal2:MealVO = {
-    id: 2,
-    name: 'jabłko',
-    calories: 50
-  };
-  meal3:MealVO = {
-    id: 3,
-    name: 'ciastko',
-    calories: 500
-  };
-
   meals:MealVO[];
+
+  constructor(private diaryService:DiaryService) {
+    this.meals = diaryService.getMeals();
+  }
+
+  ngOnInit() {}
+  
 
   calculateCalories(amountCalories:number):number {
 
@@ -39,13 +31,6 @@ export class DiaryComponent implements OnInit {
 
   test() {
     console.log(this.meals);
-  }
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.meals = [this.meal, this.meal2, this.meal3];
   }
 
   addMeal() {
