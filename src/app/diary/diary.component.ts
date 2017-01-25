@@ -10,13 +10,14 @@ import {DiaryService} from "../services/diary.service";
 export class DiaryComponent implements OnInit {
 
   meals:MealVO[];
+  calorieLimit:number = 2400;
 
   constructor(private diaryService:DiaryService) {
     this.meals = diaryService.getMeals();
   }
 
   ngOnInit() {}
-  
+
 
   calculateCalories(amountCalories:number):number {
 

@@ -9,8 +9,7 @@ export class DateChooserComponent implements OnInit {
 
   private currentTime:Date;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.currentTime = new Date();//"December 2, 1995 23:15:20");
@@ -22,15 +21,12 @@ export class DateChooserComponent implements OnInit {
       + this.currentTime.getFullYear();
   };
 
-
   nextBtn() {
     this.currentTime.setDate(this.currentTime.getDate() + 1);
-    console.log('nextBtn :');
   };
 
   prevBtn() {
     this.currentTime.setDate(this.currentTime.getDate() - 1);
-    console.log('prevBtn:');
   };
 
   dayClick(day:number = 0) {
