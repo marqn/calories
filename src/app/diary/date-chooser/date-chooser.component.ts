@@ -34,7 +34,10 @@ export class DateChooserComponent implements OnInit {
   };
 
   dayClick(day:number = 0) {
-    console.log('dayClick:' + this.moveDayLabel(day));
+    let time:Date = new Date(this.currentTime.getTime());
+    time.setDate(time.getDate() + day);
+
+    this.currentTime = time;
   };
 
 // PRIVATE FUNCTIONS //
