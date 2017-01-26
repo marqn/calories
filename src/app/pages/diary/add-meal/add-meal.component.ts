@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {MealVO} from "../../../meal-vo";
 
 @Component({
@@ -9,7 +9,7 @@ import {MealVO} from "../../../meal-vo";
 export class AddMealComponent implements OnInit {
 
   @Input() mealVO:MealVO;
-
+  @Output() event:EventEmitter<any> = new EventEmitter();
 
   public dataAutocomplete;
 
@@ -17,10 +17,8 @@ export class AddMealComponent implements OnInit {
   }
 
   delete(item:MealVO) {
-    console.log('delete it');
-    console.log(item);
+    this.event.next(this.mealVO);
   }
-
 
   ngOnInit() {
     this.dataAutocomplete =

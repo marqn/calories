@@ -16,9 +16,7 @@ export class DiaryComponent implements OnInit {
     this.meals = diaryService.getMeals();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 
   calculateCalories(amountCalories:number):number {
 
@@ -38,16 +36,17 @@ export class DiaryComponent implements OnInit {
       return 'red-text';
   }
 
-  test() {
-    console.log(this.meals);
-  }
-
   addMeal() {
     var meal:MealVO = new MealVO();
     meal.id = 4;
     meal.name = '';
     meal.calories = 40;
     this.meals.unshift(meal);
+  }
+
+  handleMyEvent(arg) {
+    var index = this.meals.indexOf(arg);
+    this.meals.splice(index, 1);
   }
 
 }

@@ -4,10 +4,9 @@
 
   <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
   <a (click)="addMeal()" class="btn waves-effect red">add row</a>
-  <a (click)="test()" class="btn waves-effect red">test</a>
 
   <div *ngFor="let meal of meals">
-    <app-add-meal [mealVO]="meal"></app-add-meal>
+    <app-add-meal [mealVO]="meal" (event)="handleMyEvent($event)"></app-add-meal>
   </div>
 
 </div>
