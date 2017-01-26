@@ -17,10 +17,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.getProfile().subscribe(
-      categories => {
-        console.log(categories);
-        if(categories.age && categories.weight)
-          this.profile = categories;
+        userData => {
+        this.profile.age = userData.age;
+        this.profile.weight = userData.weight;
       });
   }
 

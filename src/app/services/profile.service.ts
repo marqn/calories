@@ -19,8 +19,8 @@ export class ProfileService {
   }
 
   setProfile(userData:UserVO) {
-    const item = this.afire.database.object('users/' + this.uid + '/profile');
-    return item.set(userData)
+    const item = this.afire.database.object('users/' + this.uid );
+    return item.set({profile:userData})
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
