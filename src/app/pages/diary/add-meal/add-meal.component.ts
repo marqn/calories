@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {MealVO} from "../../meal-vo";
+import {MealVO} from "../../../meal-vo";
 
 @Component({
   selector: 'app-add-meal',

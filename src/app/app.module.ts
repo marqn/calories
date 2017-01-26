@@ -3,18 +3,19 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
-import {NewComponentComponent} from "./new-component/new-component.component";
 import {MaterializeDirective} from "angular2-materialize";
 import {NavigationComponent} from "./navigation/navigation.component";
 import {RouterModule, Routes} from "@angular/router";
-import {DiaryComponent} from "./diary/diary.component";
-import {MyFoodComponent} from "./my-food/my-food.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {LoginComponent} from "./login/login.component";
-import { DateChooserComponent } from './diary/date-chooser/date-chooser.component';
-import { AddMealComponent } from './diary/add-meal/add-meal.component';
-import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
+import {DiaryComponent} from "./pages/diary/diary.component";
+import {MyFoodComponent} from "./pages/my-food/my-food.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {DateChooserComponent} from "./pages/diary/date-chooser/date-chooser.component";
+import {AddMealComponent} from "./pages/diary/add-meal/add-meal.component";
+import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
 import {DiaryService} from "./services/diary.service";
+import {DropdownComponent} from "./lib/dropdown/dropdown.component";
+import {ProfileService} from "./services/profile.service";
 
 // Must export the config
 export const firebaseConfig = {
@@ -40,7 +41,6 @@ const appRoutes:Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    NewComponentComponent,
     MaterializeDirective,
     NavigationComponent,
     DiaryComponent,
@@ -48,7 +48,8 @@ const appRoutes:Routes = [
     ProfileComponent,
     LoginComponent,
     DateChooserComponent,
-    AddMealComponent
+    AddMealComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,10 @@ const appRoutes:Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [DiaryService],
+  providers: [
+    DiaryService,
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

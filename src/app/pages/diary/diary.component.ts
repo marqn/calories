@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {MealVO} from "../meal-vo";
-import {DiaryService} from "../services/diary.service";
+import {MealVO} from "../../meal-vo";
+import {DiaryService} from "../../services/diary.service";
 
 @Component({
   selector: 'app-diary',
@@ -16,18 +16,26 @@ export class DiaryComponent implements OnInit {
     this.meals = diaryService.getMeals();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 
   calculateCalories(amountCalories:number):number {
 
     for (var i = 0; i < this.meals.length; i++) {
-      var  mealVO:MealVO = this.meals[i];
-      if(mealVO.calories != undefined)
-      amountCalories -= mealVO.calories;
+      var mealVO:MealVO = this.meals[i];
+      if (mealVO.calories != undefined)
+        amountCalories -= mealVO.calories;
     }
 
     return amountCalories;
+  }
+
+  changeColor():string {
+    if (this.calculateCalories(this.calorieLimit) >= 0)
+      return 'green-text';
+    else
+      return 'red-text';
   }
 
   test() {

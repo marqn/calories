@@ -1,0 +1,12 @@
+
+<div>
+  <a materialize="dropdown" class='dropdown-button btn' data-activates='dropdown2'>
+    {{label}}
+    <i class="material-icons right">arrow_drop_down</i>
+  </a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown2' class='dropdown-content'>
+    <li *ngFor="let item of items"><a (click)="setValue(item)" class="center">{{item.name}}</a></li>
+  </ul>
+</div>

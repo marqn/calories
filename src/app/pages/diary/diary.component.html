@@ -1,10 +1,8 @@
-<!--<app-new-component [meal]="meal"></app-new-component>-->
-
 <div class="row center-align container">
 
   <app-date-chooser></app-date-chooser>
 
-  <h3>Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
+  <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
   <a (click)="addMeal()" class="btn waves-effect red">add row</a>
   <a (click)="test()" class="btn waves-effect red">test</a>
 
@@ -13,5 +11,3 @@
   </div>
 
 </div>
-
-
