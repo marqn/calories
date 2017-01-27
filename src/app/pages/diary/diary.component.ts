@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {MealVO} from "../../meal-vo";
 import {DiaryService} from "../../services/diary.service";
 
@@ -7,25 +7,33 @@ import {DiaryService} from "../../services/diary.service";
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.css']
 })
-export class DiaryComponent implements OnInit {
+export class DiaryComponent {
 
-  meals:MealVO[];
+  meals;
   calorieLimit:number = 2400;
 
   constructor(private diaryService:DiaryService) {
-    this.meals = diaryService.getMeals();
+    this.diaryService.getMeals().subscribe(
+      categories => {
+        this.meals = categories;
+        console.log(this.meals);
+      }
+    );
   }
 
-  ngOnInit() {}
+  test() {
+    console.log(this.meals);
+  }
 
   calculateCalories(amountCalories:number):number {
+    if (this.meals == undefined)
+      return amountCalories;
 
     for (var i = 0; i < this.meals.length; i++) {
       var mealVO:MealVO = this.meals[i];
       if (mealVO.calories != undefined)
         amountCalories -= mealVO.calories;
     }
-
     return amountCalories;
   }
 
@@ -38,15 +46,9 @@ export class DiaryComponent implements OnInit {
 
   addMeal() {
     var meal:MealVO = new MealVO();
-    meal.id = 4;
     meal.name = '';
-    meal.calories = 40;
+    meal.calories = 0;
     this.meals.unshift(meal);
   }
-
-  handleMyEvent(arg) {
-    var index = this.meals.indexOf(arg);
-    this.meals.splice(index, 1);
-  }
-
+  
 }

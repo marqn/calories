@@ -8,6 +8,9 @@
     <input class="center-align " min="0" [(ngModel)]="mealVO.calories"  type="number" placeholder="Calories">
   </div>
   <div class="col s1 ">
+    <a (click)="saveMeal(mealVO)" class="material-icons cursor">save</a>
+  </div>
+  <div class="col s1 ">
     <a (click)="delete(mealVO)" class="material-icons cursor">delete</a>
   </div>
 </div>
