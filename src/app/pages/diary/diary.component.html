@@ -1,10 +1,10 @@
 <div class="row center-align container">
 
-  <app-date-chooser></app-date-chooser>
+  <app-date-chooser (event)="selectDayHandler($event)"></app-date-chooser>
 
   <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
   <a (click)="addMeal()" class="btn waves-effect red">add row</a>
-  <a (click)="test()" class="btn waves-effect red">test</a>
+  <a (click)="getDishes()" class="btn waves-effect red">test</a>
 
   <div *ngFor="let meal of meals">
     <app-add-meal [mealVO]="meal" (event)="handleMyEvent($event)"></app-add-meal>

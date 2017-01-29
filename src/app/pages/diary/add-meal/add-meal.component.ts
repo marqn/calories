@@ -19,13 +19,13 @@ export class AddMealComponent implements OnInit {
 
   delete(item:MealVO) {
     this.event.next(this.mealVO);
-    this.diaryService.deleteMeal(item);
+    //this.diaryService.deleteMeal(item);
   }
 
   saveMeal(meal) {
     this.diaryService.saveMeal(meal)
       .then(_x => {
-        console.log(_x);
+        console.log('save');
       });
   }
 

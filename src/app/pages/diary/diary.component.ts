@@ -13,16 +13,21 @@ export class DiaryComponent {
   calorieLimit:number = 2400;
 
   constructor(private diaryService:DiaryService) {
-    this.diaryService.getMeals().subscribe(
-      categories => {
-        this.meals = categories;
-        console.log(this.meals);
+    this.diaryService.isAuthenticated().subscribe(
+        authStatus => {
+        if (authStatus) {
+          this.getDishes();
+        }
       }
     );
   }
 
-  test() {
-    console.log(this.meals);
+  getDishes() {
+    this.diaryService.getMeals().subscribe(
+        categories => {
+        this.meals = categories;
+      }
+    );
   }
 
   calculateCalories(amountCalories:number):number {
@@ -50,5 +55,10 @@ export class DiaryComponent {
     meal.calories = 0;
     this.meals.unshift(meal);
   }
-  
+
+  selectDayHandler(selectedTime) {
+    console.log('selectDayHandler:' + selectedTime);
+    this.getDishes();
+  }
+
 }

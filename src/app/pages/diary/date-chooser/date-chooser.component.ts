@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 
 @Component({
   selector: 'app-date-chooser',
@@ -8,6 +8,7 @@ import {Component, OnInit} from "@angular/core";
 export class DateChooserComponent implements OnInit {
 
   private currentTime:Date;
+  @Output() event:EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
@@ -34,6 +35,8 @@ export class DateChooserComponent implements OnInit {
     time.setDate(time.getDate() + day);
 
     this.currentTime = time;
+
+    this.event.next(time);
   };
 
 // PRIVATE FUNCTIONS //
