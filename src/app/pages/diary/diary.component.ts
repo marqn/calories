@@ -18,7 +18,7 @@ export class DiaryComponent {
     this.selectedTime = new Date();
 
     this.diaryService.isAuthenticated().subscribe(
-        authStatus => {
+      authStatus => {
         if (authStatus) {
           this.getDishes(this.selectedTime);
         }
@@ -29,7 +29,7 @@ export class DiaryComponent {
   getDishes(selectedTime:Date) {
     var time:string = this.getSelectedDate(selectedTime);
     this.diaryService.getMeals(time).subscribe(
-        categories => {
+      categories => {
         this.items = categories.reverse();
       }
     );
@@ -62,6 +62,7 @@ export class DiaryComponent {
     meal.name = '';
     meal.calories = 0;
     meal.type = 'meal';
+    meal.state = 'new';
     this.items.unshift(meal);
   }
 
@@ -70,6 +71,7 @@ export class DiaryComponent {
     activity.name = '';
     activity.calories = 0;
     activity.type = 'activity';
+    activity.state = 'new';
     this.items.unshift(activity);
   }
 
@@ -78,12 +80,22 @@ export class DiaryComponent {
     this.getDishes(selectedTime);
   }
 
-  saveMealHandler(meal) {
-    this.diaryService.saveMeal(meal, this.getSelectedDate(this.selectedTime));
+  saveMealHandler(item) {
+    if (item.state == 'new') {
+      item.state = null;
+      this.diaryService.saveMeal(item, this.getSelectedDate(this.selectedTime));
+    } else {
+      this.diaryService.updateItem(item, item.$key, this.getSelectedDate(this.selectedTime));
+    }
   }
 
-  deleteMealHandler(meal) {
-    this.diaryService.deleteMeal(meal, this.getSelectedDate(this.selectedTime));
+  deleteMealHandler(item) {
+    if (!item.state)
+      this.diaryService.deleteMeal(item, this.getSelectedDate(this.selectedTime));
+    else {
+      var index = this.items.indexOf(item);
+      this.items.splice(index, 1);
+    }
   }
 
   private getSelectedDate(selectedTime:Date):string {

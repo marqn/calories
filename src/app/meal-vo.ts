@@ -3,4 +3,5 @@ export class ItemVO {
   calories:number;
   dataAdded:number;
   type:string;
+  state:string;
 }

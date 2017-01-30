@@ -2,11 +2,11 @@ import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {ItemVO} from "../../../meal-vo";
 
 @Component({
-  selector: 'app-add-meal',
-  templateUrl: './add-meal.component.html',
-  styleUrls: ['./add-meal.component.css']
+  selector: 'app-item',
+  templateUrl: './add-item.component.html',
+  styleUrls: ['./add-item.component.css']
 })
-export class AddMealComponent implements OnInit {
+export class AddItemComponent implements OnInit {
 
   type:string; // meal <-/-> activity
   

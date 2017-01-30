@@ -11,7 +11,7 @@ import {MyFoodComponent} from "./pages/my-food/my-food.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {DateChooserComponent} from "./pages/diary/date-chooser/date-chooser.component";
-import {AddMealComponent} from "./pages/diary/add-meal/add-meal.component";
+import {AddItemComponent} from "./pages/diary/add-item/add-item.component";
 import {AngularFireModule, AuthProviders, AuthMethods} from "angularfire2";
 import {DiaryService} from "./services/diary.service";
 import {DropdownComponent} from "./lib/dropdown/dropdown.component";
@@ -31,7 +31,7 @@ const myFirebaseAuthConfig = {
 };
 
 const appRoutes:Routes = [
-  {path: '', component: DiaryComponent},
+  {path: '', component: DiaryComponent}, 
   {path: 'login', component: LoginComponent},
   {path: 'diary', component: DiaryComponent},
   {path: 'my-food', component: MyFoodComponent},
@@ -48,7 +48,7 @@ const appRoutes:Routes = [
     ProfileComponent,
     LoginComponent,
     DateChooserComponent,
-    AddMealComponent,
+    AddItemComponent,
     DropdownComponent
   ],
   imports: [

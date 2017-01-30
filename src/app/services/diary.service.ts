@@ -32,7 +32,17 @@ export class DiaryService {
     const item = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
     meal.dataAdded = new Date().getTime();
     return item.push(meal)
+      .then(function () {
+        console.log('save');
+      })
       .catch(err => console.log(err, 'You do not have access!'));
+  }
+
+  updateItem(item:ItemVO, key, selectedTime:string) {
+    const list = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    list.update(key, {name:item.name, calories:item.calories}).then(function () {
+      console.log('update');
+    });
   }
 
   deleteMeal(meal, selectedTime:string) {
