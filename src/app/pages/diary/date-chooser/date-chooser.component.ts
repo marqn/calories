@@ -24,10 +24,12 @@ export class DateChooserComponent implements OnInit {
 
   nextBtn() {
     this.currentTime.setDate(this.currentTime.getDate() + 1);
+    this.event.next(this.currentTime);
   };
 
   prevBtn() {
     this.currentTime.setDate(this.currentTime.getDate() - 1);
+    this.event.next(this.currentTime);
   };
 
   dayClick(day:number = 0) {
