@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {MealVO} from "../../meal-vo";
+import {ItemVO} from "../../meal-vo";
 import {DiaryService} from "../../services/diary.service";
 
 @Component({
@@ -9,8 +9,8 @@ import {DiaryService} from "../../services/diary.service";
 })
 export class DiaryComponent {
 
-  meals;
-  selectedTime;
+  items;
+  selectedTime:Date;
   calorieLimit:number = 2400;
 
   constructor(private diaryService:DiaryService) {
@@ -26,23 +26,26 @@ export class DiaryComponent {
     );
   }
 
-  getDishes(selectedTime:string) {
-    selectedTime = this.getSelectedDate(selectedTime);
-    this.diaryService.getMeals(selectedTime).subscribe(
+  getDishes(selectedTime:Date) {
+    var time:string = this.getSelectedDate(selectedTime);
+    this.diaryService.getMeals(time).subscribe(
         categories => {
-        this.meals = categories;
+        this.items = categories.reverse();
       }
     );
   }
 
   calculateCalories(amountCalories:number):number {
-    if (this.meals == undefined)
+    if (this.items == undefined)
       return amountCalories;
 
-    for (var i = 0; i < this.meals.length; i++) {
-      var mealVO:MealVO = this.meals[i];
-      if (mealVO.calories != undefined)
-        amountCalories -= mealVO.calories;
+    for (var i = 0; i < this.items.length; i++) {
+      var itemVO:ItemVO = this.items[i];
+      if (itemVO.calories != undefined && itemVO.type == 'meal')
+        amountCalories -= itemVO.calories;
+
+      if (itemVO.calories != undefined && itemVO.type == 'activity')
+        amountCalories += itemVO.calories;
     }
     return amountCalories;
   }
@@ -55,30 +58,35 @@ export class DiaryComponent {
   }
 
   addMeal() {
-    var meal:MealVO = new MealVO();
+    var meal:ItemVO = new ItemVO();
     meal.name = '';
     meal.calories = 0;
-    this.meals.unshift(meal);
+    meal.type = 'meal';
+    this.items.unshift(meal);
+  }
+
+  addActivity() {
+    var activity:ItemVO = new ItemVO();
+    activity.name = '';
+    activity.calories = 0;
+    activity.type = 'activity';
+    this.items.unshift(activity);
   }
 
   selectDayHandler(selectedTime) {
-    console.log('selectDayHandler:' + this.getSelectedDate(selectedTime));
     this.selectedTime = selectedTime;
     this.getDishes(selectedTime);
   }
 
   saveMealHandler(meal) {
-    this.diaryService.saveMeal(meal, this.getSelectedDate(this.selectedTime))
-      .then(_x => {
-        console.log('save');
-      });
+    this.diaryService.saveMeal(meal, this.getSelectedDate(this.selectedTime));
   }
 
   deleteMealHandler(meal) {
     this.diaryService.deleteMeal(meal, this.getSelectedDate(this.selectedTime));
   }
 
-  private getSelectedDate(selectedTime) {
+  private getSelectedDate(selectedTime:Date):string {
     return selectedTime.getDate() + '-' +
       selectedTime.getMonth() + '-' +
       selectedTime.getFullYear();

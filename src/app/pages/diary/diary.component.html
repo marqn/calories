@@ -3,11 +3,11 @@
   <app-date-chooser (event)="selectDayHandler($event)"></app-date-chooser>
 
   <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
-  <a (click)="addMeal()" class="btn waves-effect red">add row</a>
-  <a (click)="getDishes()" class="btn waves-effect red">test</a>
+  <a (click)="addMeal()" class="btn waves-effect red">Add Meal</a>
+  <a (click)="addActivity()" class="btn waves-effect red">Add Activity</a>
 
-  <div *ngFor="let meal of meals">
-    <app-add-meal [mealVO]="meal" (saveEvent)="saveMealHandler($event)" (delEvent)="deleteMealHandler($event)"></app-add-meal>
+  <div *ngFor="let item of items">
+    <app-add-meal [mealVO]="item" (saveEvent)="saveMealHandler($event)" (delEvent)="deleteMealHandler($event)"></app-add-meal>
   </div>
 
 </div>

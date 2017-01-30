@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
-import {MEALS} from './mocks/mock-meals';
-import {MealVO} from "../meal-vo";
-import {AngularFire, FirebaseListObservable} from "angularfire2";
+import {Injectable} from "@angular/core";
+import {ItemVO} from "../meal-vo";
+import {AngularFire} from "angularfire2";
 import "rxjs/add/operator/map";
-import { Observable } from 'rxjs/Rx';
+import {Observable} from "rxjs/Rx";
 
 @Injectable()
 export class DiaryService {
@@ -13,32 +12,26 @@ export class DiaryService {
 
   constructor(af:AngularFire) {
     this.afire = af;
-
-    console.log(af);
-
     af.auth.subscribe( // user info is inside auth object
-        auth => {
+      auth => {
         this.uid = auth.uid
       }
     );
   }
 
-  isAuthenticated(): Observable<any> {
+  isAuthenticated():Observable<any> {
     return this.afire.auth;
   }
 
-
   getMeals(selectedTime:string) {
     // return MEALS;
-    console.log('users/' + this.uid + '/dishes/' + selectedTime);
     return this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
   }
 
-  saveMeal(meal:MealVO, selectedTime:string) {
-    console.log(this.uid);
+  saveMeal(meal:ItemVO, selectedTime:string) {
     const item = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    meal.dataAdded = new Date().getTime();
     return item.push(meal)
-      .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
 

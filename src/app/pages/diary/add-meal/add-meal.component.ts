@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
-import {MealVO} from "../../../meal-vo";
+import {ItemVO} from "../../../meal-vo";
 
 @Component({
   selector: 'app-add-meal',
@@ -8,7 +8,9 @@ import {MealVO} from "../../../meal-vo";
 })
 export class AddMealComponent implements OnInit {
 
-  @Input() mealVO:MealVO;
+  type:string; // meal <-/-> activity
+  
+  @Input() mealVO:ItemVO;
   @Output() saveEvent:EventEmitter<any> = new EventEmitter();
   @Output() delEvent:EventEmitter<any> = new EventEmitter();
 
@@ -17,7 +19,7 @@ export class AddMealComponent implements OnInit {
   constructor() {
   }
 
-  delete(item:MealVO) {
+  delete(item:ItemVO) {
     this.delEvent.next(this.mealVO);
   }
 

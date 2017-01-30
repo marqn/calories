@@ -19,13 +19,14 @@ export class ProfileService {
   }
 
   setProfile(userData:UserVO) {
-    const item = this.afire.database.object('users/' + this.uid );
-    return item.set({profile:userData})
+    const item = this.afire.database.object('users/' + this.uid + '/profile' );
+    return item.set(userData)
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
   getProfile() {
-    return this.afire.database.object('users/' + this.uid + '/profile');
+    if(this.uid)
+      return this.afire.database.object('users/' + this.uid + '/profile');
   }
 
 }
