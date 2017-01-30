@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {MealVO} from "../../../meal-vo";
-import {DiaryService} from "../../../services/diary.service";
 
 @Component({
   selector: 'app-add-meal',
@@ -10,23 +9,20 @@ import {DiaryService} from "../../../services/diary.service";
 export class AddMealComponent implements OnInit {
 
   @Input() mealVO:MealVO;
-  @Output() event:EventEmitter<any> = new EventEmitter();
+  @Output() saveEvent:EventEmitter<any> = new EventEmitter();
+  @Output() delEvent:EventEmitter<any> = new EventEmitter();
 
   public dataAutocomplete;
 
-  constructor(private diaryService:DiaryService) {
+  constructor() {
   }
 
   delete(item:MealVO) {
-    this.event.next(this.mealVO);
-    //this.diaryService.deleteMeal(item);
+    this.delEvent.next(this.mealVO);
   }
 
   saveMeal(meal) {
-    this.diaryService.saveMeal(meal)
-      .then(_x => {
-        console.log('save');
-      });
+    this.saveEvent.next(this.mealVO);
   }
 
   ngOnInit() {

@@ -28,21 +28,22 @@ export class DiaryService {
   }
 
 
-  getMeals() {
+  getMeals(selectedTime:string) {
     // return MEALS;
-    console.log('users/' + this.uid + '/dishes/');
-    return this.afire.database.list('users/' + this.uid + '/dishes/');
+    console.log('users/' + this.uid + '/dishes/' + selectedTime);
+    return this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
   }
 
-  saveMeal(meal:MealVO) {
+  saveMeal(meal:MealVO, selectedTime:string) {
     console.log(this.uid);
-    const item = this.afire.database.list('users/' + this.uid + '/dishes');
+    const item = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
     return item.push(meal)
       .then(_ => console.log('success'))
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
-  deleteMeal(meal) {
-    meal.remove();
+  deleteMeal(meal, selectedTime:string) {
+    const items = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    items.remove(meal);
   }
 }

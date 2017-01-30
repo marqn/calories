@@ -10,20 +10,25 @@ import {DiaryService} from "../../services/diary.service";
 export class DiaryComponent {
 
   meals;
+  selectedTime;
   calorieLimit:number = 2400;
 
   constructor(private diaryService:DiaryService) {
+
+    this.selectedTime = new Date();
+
     this.diaryService.isAuthenticated().subscribe(
         authStatus => {
         if (authStatus) {
-          this.getDishes();
+          this.getDishes(this.selectedTime);
         }
       }
     );
   }
 
-  getDishes() {
-    this.diaryService.getMeals().subscribe(
+  getDishes(selectedTime:string) {
+    selectedTime = this.getSelectedDate(selectedTime);
+    this.diaryService.getMeals(selectedTime).subscribe(
         categories => {
         this.meals = categories;
       }
@@ -57,8 +62,27 @@ export class DiaryComponent {
   }
 
   selectDayHandler(selectedTime) {
-    console.log('selectDayHandler:' + selectedTime);
-    this.getDishes();
+    console.log('selectDayHandler:' + this.getSelectedDate(selectedTime));
+    this.selectedTime = selectedTime;
+    this.getDishes(selectedTime);
   }
+
+  saveMealHandler(meal) {
+    this.diaryService.saveMeal(meal, this.getSelectedDate(this.selectedTime))
+      .then(_x => {
+        console.log('save');
+      });
+  }
+
+  deleteMealHandler(meal) {
+    this.diaryService.deleteMeal(meal, this.getSelectedDate(this.selectedTime));
+  }
+
+  private getSelectedDate(selectedTime) {
+    return selectedTime.getDate() + '-' +
+      selectedTime.getMonth() + '-' +
+      selectedTime.getFullYear();
+  }
+
 
 }

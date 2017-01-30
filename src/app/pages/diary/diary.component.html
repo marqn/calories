@@ -7,7 +7,7 @@
   <a (click)="getDishes()" class="btn waves-effect red">test</a>
 
   <div *ngFor="let meal of meals">
-    <app-add-meal [mealVO]="meal" (event)="handleMyEvent($event)"></app-add-meal>
+    <app-add-meal [mealVO]="meal" (saveEvent)="saveMealHandler($event)" (delEvent)="deleteMealHandler($event)"></app-add-meal>
   </div>
 
 </div>
