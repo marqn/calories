@@ -40,7 +40,8 @@ export class DiaryService {
 
   updateItem(item:ItemVO, key, selectedTime:string) {
     const list = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
-    list.update(key, {name:item.name, calories:item.calories}).then(function () {
+    item.dataAdded = new Date().getTime();
+    list.update(key, {name: item.name, calories: item.calories, dataAdded: item.dataAdded}).then(function () {
       console.log('update');
     });
   }
