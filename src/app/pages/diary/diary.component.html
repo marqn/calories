@@ -9,6 +9,8 @@
   <a (click)="addMeal()" class="btn waves-effect red">Add Meal</a>
   <a (click)="addActivity()" class="btn waves-effect green">Add Activity</a>
 
+  <p></p>
+
   <div *ngFor="let item of items">
     <app-item [mealVO]="item" (saveEvent)="saveMealHandler($event)" (delEvent)="deleteMealHandler($event)"></app-item>
   </div>
