@@ -30,7 +30,6 @@ export class DiaryService {
 
   saveMeal(meal:ItemVO, selectedTime:string) {
     const item = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
-    meal.dataAdded = new Date().getTime();
     return item.push(meal)
       .then(function () {
         console.log('save');
@@ -40,8 +39,7 @@ export class DiaryService {
 
   updateItem(item:ItemVO, key, selectedTime:string) {
     const list = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
-    item.dataAdded = new Date().getTime();
-    list.update(key, {name: item.name, calories: item.calories, dataAdded: item.dataAdded}).then(function () {
+    list.update(key, {name: item.name, calories: item.calories }).then(function () {
       console.log('update');
     });
   }

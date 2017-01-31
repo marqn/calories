@@ -1,13 +1,23 @@
 <div class="row center-align container">
 
-  <app-date-chooser (event)="selectDayHandler($event)"></app-date-chooser>
+  <div class="row">
+    <app-date-chooser (event)="selectDayHandler($event)"></app-date-chooser>
+  </div>
 
-  <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
-  <!--<div class="progress">
-    <div class="determinate" style="width: 30%"></div>
-  </div>-->
-  <a (click)="addMeal()" class="btn waves-effect red">Add Meal</a>
-  <a (click)="addActivity()" class="btn waves-effect green">Add Activity</a>
+  <div class="row">
+    <h3 [class]="changeColor()">Limit: {{calculateCalories(calorieLimit)}} kcal</h3>
+  </div>
+
+  <div class="row">
+    <div class="progress col s6 offset-s3">
+      <div class="determinate" [style.width.%]="progressValue()"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <a (click)="addMeal()" class="btn waves-effect red">Add Meal</a>
+    <a (click)="addActivity()" class="btn waves-effect green">Add Activity</a>
+  </div>
 
   <p></p>
 

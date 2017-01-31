@@ -50,6 +50,15 @@ export class DiaryComponent {
     return amountCalories;
   }
 
+  progressValue() {
+    let value = Math.round((this.calculateCalories(this.calorieLimit) / this.calorieLimit) * 100);
+    console.log((value))
+    if(value < 0)
+      return 0;
+    
+    return value;
+  }
+
   changeColor():string {
     if (this.calculateCalories(this.calorieLimit) >= 0)
       return 'green-text';
