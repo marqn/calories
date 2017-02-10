@@ -7,7 +7,7 @@ import {MaterializeDirective} from "angular2-materialize";
 import {NavigationComponent} from "./navigation/navigation.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DiaryComponent} from "./pages/diary/diary.component";
-import {MyFoodComponent} from "./pages/my-food/my-food.component";
+import {MyFoodComponent} from "./pages/statistic/statistic.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {DateChooserComponent} from "./pages/diary/date-chooser/date-chooser.component";

@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {ItemVO} from "../../meal-vo";
 import {DiaryService} from "../../services/diary.service";
+import {TabUtil} from "../../lib/tab-util"
 
 @Component({
   selector: 'app-diary',
@@ -20,7 +21,7 @@ export class DiaryComponent {
     this.diaryService.isAuthenticated().subscribe(
       authStatus => {
         if (authStatus) {
-          this.getDishes(this.selectedTime);
+          // this.getDishes(this.selectedTime);
         }
       }
     );
@@ -29,10 +30,34 @@ export class DiaryComponent {
   getDishes(selectedTime:Date) {
     var time:string = this.getSelectedDate(selectedTime);
     this.diaryService.getMeals(time).subscribe(
-      categories => {
-        this.items = categories.reverse();
+      meals => {
+        this.items = meals.reverse();
+
+        // console.log("loaded meals")
       }
     );
+  }
+
+
+  mergeDoubles(tab) {
+    var duplicateItems = TabUtil.find_duplicates(tab);
+    var duplicateContainer = [];
+
+    console.log('*********************');
+    console.log(duplicateItems);
+    console.log('---------------------');
+
+    /*for (var i = 0; i < duplicateItems.length; i++) {
+      var obj = duplicateItems[i];
+      var repeatCounter:number = 0;
+      for (var j = 0; j < tab.length; j++) {
+        var tabItem = tab[j];
+        if (obj = tabItem)
+          repeatCounter++;
+      }
+      duplicateContainer.push({value: obj, repeatNumber: repeatCounter});
+    }
+    console.log(duplicateContainer);*/
   }
 
   calculateCalories(amountCalories:number):number {
@@ -52,10 +77,9 @@ export class DiaryComponent {
 
   progressValue() {
     let value = Math.round((this.calculateCalories(this.calorieLimit) / this.calorieLimit) * 100);
-    console.log((value))
-    if(value < 0)
+    if (value < 0)
       return 0;
-    
+
     return value;
   }
 
@@ -87,6 +111,7 @@ export class DiaryComponent {
   selectDayHandler(selectedTime) {
     this.selectedTime = selectedTime;
     this.getDishes(selectedTime);
+    console.log("selectDayHandler: " + selectedTime);
   }
 
   saveMealHandler(item) {
