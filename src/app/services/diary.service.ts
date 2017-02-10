@@ -7,11 +7,11 @@ import {Observable} from "rxjs/Rx";
 @Injectable()
 export class DiaryService {
 
-  afire:AngularFire;
+  af:AngularFire;
   uid:string;
 
   constructor(af:AngularFire) {
-    this.afire = af;
+    this.af = af;
     af.auth.subscribe( // user info is inside auth object
       auth => {
         this.uid = auth.uid
@@ -20,16 +20,16 @@ export class DiaryService {
   }
 
   isAuthenticated():Observable<any> {
-    return this.afire.auth;
+    return this.af.auth;
   }
 
   getMeals(selectedTime:string) {
     // return MEALS;
-    return this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    return this.af.database.list('users/' + this.uid + '/dishes/' + selectedTime);
   }
 
   saveMeal(meal:ItemVO, selectedTime:string) {
-    const item = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    const item = this.af.database.list('users/' + this.uid + '/dishes/');
     return item.push(meal)
       .then(function () {
         console.log('save');
@@ -37,15 +37,29 @@ export class DiaryService {
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
+  test() {
+    const queryObs = this.af.database.list('users/' + this.uid + '/dishes/',
+      {
+        query: {
+          orderByChild: 'name',
+          equalTo: 'kanapka'
+        }
+      });
+
+    queryObs.subscribe(queriedItems => {
+      console.log(queriedItems);
+    });
+  }
+
   updateItem(item:ItemVO, key, selectedTime:string) {
-    const list = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    const list = this.af.database.list('users/' + this.uid + '/dishes/' + selectedTime);
     list.update(key, {name: item.name, calories: item.calories }).then(function () {
       console.log('update');
     });
   }
 
   deleteMeal(meal, selectedTime:string) {
-    const items = this.afire.database.list('users/' + this.uid + '/dishes/' + selectedTime);
+    const items = this.af.database.list('users/' + this.uid + '/dishes/' + selectedTime);
     items.remove(meal);
   }
 }

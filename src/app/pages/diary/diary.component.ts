@@ -21,12 +21,16 @@ export class DiaryComponent {
     this.diaryService.isAuthenticated().subscribe(
       authStatus => {
         if (authStatus) {
-          // this.getDishes(this.selectedTime);
+          this.getDishes(this.selectedTime);
         }
       }
     );
   }
 
+  test() {
+    this.diaryService.test();
+  }
+  
   getDishes(selectedTime:Date) {
     var time:string = this.getSelectedDate(selectedTime);
     this.diaryService.getMeals(time).subscribe(
