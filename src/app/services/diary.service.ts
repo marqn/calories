@@ -29,7 +29,7 @@ export class DiaryService {
   }
 
   saveMeal(meal:ItemVO, selectedTime:string) {
-    const item = this.af.database.list('users/' + this.uid + '/dishes/');
+    const item = this.af.database.list('users/' + this.uid + '/dishes/' + selectedTime);
     return item.push(meal)
       .then(function () {
         console.log('save');
